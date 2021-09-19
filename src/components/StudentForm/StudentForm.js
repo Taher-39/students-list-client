@@ -9,7 +9,8 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        width: '450px'
+        width: '450px',
+        backgroundColor: '#fff'
     },
 };
 
@@ -24,8 +25,7 @@ const StudentForm = () => {
         newStudentInfo[e.target.name] = e.target.value;
         setStudentInfo(newStudentInfo)
     }
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = () => {
         fetch('http://localhost:4000/addStudent', {
             method: 'POST',
             headers: {
@@ -45,8 +45,7 @@ const StudentForm = () => {
     }
 
     function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        subtitle.style.color = "green";
+        subtitle.style.color = "steelBlue";
     }
 
     function closeModal() {
@@ -55,7 +54,7 @@ const StudentForm = () => {
     return (
         <div className='text-center'>
             <button className='btn btn-success ' onClick={openModal}>Add Student</button>
-            <Modal
+            <Modal 
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
@@ -65,14 +64,14 @@ const StudentForm = () => {
                 <h2 className='py-2' ref={(_subtitle) => (subtitle = _subtitle)}>Fill Up The Student Form</h2>
                 
                 <form onSubmit={handleSubmit}>
-                    <input onBlur={handleBlur} className='form-control ' type='text' name='name' placeholder=' student-name' required /><br />
+                    <input onBlur={handleBlur} className='form-control' type='text' name='name' placeholder=' student-name' required /><br />
                     <input onBlur={handleBlur} className='form-control ' type='text' name='phone' placeholder=' 011578...' required /><br />
                     <input onBlur={handleBlur} className='form-control ' type='email' name='email' placeholder=' example@gmail.com' required /><br />
                     <input onBlur={handleBlur} className='form-control ' type='text' name='hobbies' placeholder=' student-hobbies' required /><br />
 
                     <div className="d-flex justify-content-around">
-                        <button className='btn btn-info'>Save</button>
-                        <button onClick={closeModal} className='btn btn-danger'>close</button>
+                        <button className='btn btn-success px-4'>Save</button>
+                        <button onClick={closeModal} className='btn btn-danger px-4'>close</button>
                     </div>
                 </form>
             </Modal>
