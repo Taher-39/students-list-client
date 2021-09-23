@@ -4,10 +4,10 @@ import { FaEdit } from 'react-icons/fa';
 
 const StudentTableList = () => {
     const [students, setStudents] = useState([])
-    const [singleStudent, setSingleStudent] = useState({})
+    const [singleStudent, setSingleStudent] = useState()
     const [editedStudentInfo, setEditedStudentInfo] = useState({})
     const [checkedItems, setCheckedItems] = useState([])
-    // console.log(singleStudent)
+
     useEffect(() => {
         fetch('http://localhost:4000/getStudents')
             .then(res => res.json())
@@ -21,19 +21,18 @@ const StudentTableList = () => {
         fetch(`http://localhost:4000/getSingleStudent/${id}`)
             .then(res => res.json())
             .then(data => {
-                // console.log(data)
                 setSingleStudent(data)
             })
     }
 
     const handleBlur = (e) => {
-        const newChangeInfo = { ...singleStudent, editIssueDate: new Date().toLocaleDateString()}
+        const newChangeInfo = { ...singleStudent, ...editedStudentInfo, editIssueDate: new Date().toLocaleDateString() }
         newChangeInfo[e.target.name] = e.target.value;
-        console.log(newChangeInfo)
         setEditedStudentInfo(newChangeInfo)
     }
     const handleSubmit = () => {
         const id = singleStudent?._id;
+        console.log(id)
         fetch(`http://localhost:4000/updateSingleStudent/${id}`,{
             method: "PATCH",
             headers: {
