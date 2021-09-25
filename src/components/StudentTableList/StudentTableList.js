@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
+import emailjs from 'emailjs-com'
 
 const StudentTableList = () => {
     const [students, setStudents] = useState([])
@@ -8,8 +9,10 @@ const StudentTableList = () => {
     const [editedStudentInfo, setEditedStudentInfo] = useState({})
     const [checkedItems, setCheckedItems] = useState([])
 
+    console.log(checkedItems)
+
     useEffect(() => {
-        fetch('http://localhost:4000/getStudents')
+        fetch('https://warm-thicket-99402.herokuapp.com/getStudents')
             .then(res => res.json())
             .then(data => {
                 setStudents(data)
@@ -18,7 +21,7 @@ const StudentTableList = () => {
 
     //single student update
     const handleEdit = (id) => {
-        fetch(`http://localhost:4000/getSingleStudent/${id}`)
+        fetch(`https://warm-thicket-99402.herokuapp.com/getSingleStudent/${id}`)
             .then(res => res.json())
             .then(data => {
                 setSingleStudent(data)
@@ -33,7 +36,7 @@ const StudentTableList = () => {
     const handleSubmit = () => {
         const id = singleStudent?._id;
         console.log(id)
-        fetch(`http://localhost:4000/updateSingleStudent/${id}`,{
+        fetch(`https://warm-thicket-99402.herokuapp.com/updateSingleStudent/${id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -48,7 +51,7 @@ const StudentTableList = () => {
     }
     const handleDelete = (id) => {
         if(window.confirm("Are You Sure For Delete..?")) {
-            fetch(`http://localhost:4000/studentDelete/${id}`, {
+            fetch(`https://warm-thicket-99402.herokuapp.com/studentDelete/${id}`, {
                 method: "DELETE"
             })
                 .then(data => data.json())
@@ -77,9 +80,19 @@ const StudentTableList = () => {
         }
 
     }
+
+    // const sendData = () => {
+    //     // emailjs.sendForm('gmail', 'template_ahvuraj', form.current, 'user_qIOggWJAfNpWPz2P2SgaG')
+    //     //     .then((result) => {
+    //     //         console.log(result.text);
+    //     //     }, (error) => {
+    //     //         console.log(error.text);
+    //     //     });
+    // }
         
     return (
         <div>
+            {/* <button className='btn btn-warning ' onClick={sendData}>Send Student Data</button> */}
             <table className='table table-borderless'>
                 <thead>
                     <tr>

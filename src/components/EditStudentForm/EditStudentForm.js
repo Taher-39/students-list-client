@@ -9,7 +9,7 @@ const EditStudentForm = ({ id }) => {
     //single student update
     const handleEdit = () => {
         alert(id)
-        fetch(`http://localhost:4000/getSingleStudent/${id}`)
+        fetch(`https://warm-thicket-99402.herokuapp.com/getSingleStudent/${id}`)
             .then(res => res.json())
             .then(data => setSingleStudent(data))
     

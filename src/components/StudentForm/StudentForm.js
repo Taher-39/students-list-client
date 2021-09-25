@@ -20,13 +20,14 @@ const StudentForm = () => {
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [studentInfo, setStudentInfo] = useState({})
+
     const handleBlur = (e) => {
         const newStudentInfo = {...studentInfo, issueDate: new Date().toLocaleDateString()}
         newStudentInfo[e.target.name] = e.target.value;
         setStudentInfo(newStudentInfo)
     }
     const handleSubmit = () => {
-        fetch('http://localhost:4000/addStudent', {
+        fetch('https://warm-thicket-99402.herokuapp.com/addStudent', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -40,6 +41,7 @@ const StudentForm = () => {
             }
         })
     }
+
     function openModal() {
         setIsOpen(true);
     }
