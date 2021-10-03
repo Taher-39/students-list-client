@@ -32,7 +32,8 @@ const StudentTableList = () => {
         newChangeInfo[e.target.name] = e.target.value;
         setEditedStudentInfo(newChangeInfo)
     }
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const id = singleStudent?._id;
         console.log(id)
         fetch(`https://warm-thicket-99402.herokuapp.com/updateSingleStudent/${id}`,{
