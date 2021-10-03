@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
-import emailjs from 'emailjs-com'
 
 const StudentTableList = () => {
     const [students, setStudents] = useState([])

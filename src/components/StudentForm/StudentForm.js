@@ -20,7 +20,6 @@ const StudentForm = () => {
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [studentInfo, setStudentInfo] = useState({})
-    console.log(studentInfo)
     const handleBlur = (e) => {
         const newStudentInfo = {...studentInfo, issueDate: new Date().toLocaleDateString()}
         newStudentInfo[e.target.name] = e.target.value;
