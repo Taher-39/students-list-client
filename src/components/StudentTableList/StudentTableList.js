@@ -8,7 +8,7 @@ const StudentTableList = () => {
     const [editedStudentInfo, setEditedStudentInfo] = useState({})
     const [checkedItems, setCheckedItems] = useState([])
 
-    console.log(checkedItems)
+    console.log(checkedItems);
 
     useEffect(() => {
         fetch('https://warm-thicket-99402.herokuapp.com/getStudents')
